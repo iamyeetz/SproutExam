@@ -9,6 +9,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Sprout.Exam.Core.Interface;
+using Sprout.Exam.Core.Service;
+using Sprout.Exam.Infrastructure.Interface;
+using Sprout.Exam.Infrastructure.Models;
+using Sprout.Exam.Infrastructure.Repository;
 using Sprout.Exam.WebApp.Data;
 using Sprout.Exam.WebApp.Models;
 
@@ -30,10 +35,12 @@ namespace Sprout.Exam.WebApp
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddDbContext<SproutExamDbContext>();
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
 
             services.AddIdentityServer()
                 .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
@@ -41,6 +48,8 @@ namespace Sprout.Exam.WebApp
             services.AddAuthentication()
                 .AddIdentityServerJwt();
 
+            services.AddScoped<IEmployeeTypeService, EmployeeTypeService>();
+            services.AddScoped<IEmployeeTypeRepository, EmployeeTypeRepository>();
             services.AddControllersWithViews();
             services.AddRazorPages();
 

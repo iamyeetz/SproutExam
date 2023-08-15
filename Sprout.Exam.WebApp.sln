@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sprout.Exam.Common", "Sprou
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sprout.Exam.Infrastructure", "Sprout.Exam.Infrastructure\Sprout.Exam.Infrastructure.csproj", "{37439299-E9FB-4A43-A02D-AF5EA5D1AA99}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sprout.Exam.Core", "Sprout.Exam.Core\Sprout.Exam.Core.csproj", "{33507C12-1704-4CD4-BFAF-8B0A258C03AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{37439299-E9FB-4A43-A02D-AF5EA5D1AA99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37439299-E9FB-4A43-A02D-AF5EA5D1AA99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37439299-E9FB-4A43-A02D-AF5EA5D1AA99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33507C12-1704-4CD4-BFAF-8B0A258C03AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33507C12-1704-4CD4-BFAF-8B0A258C03AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33507C12-1704-4CD4-BFAF-8B0A258C03AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33507C12-1704-4CD4-BFAF-8B0A258C03AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

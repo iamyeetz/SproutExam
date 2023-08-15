@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Sprout.Exam.Business.DataTransferObjects;
 using Sprout.Exam.Common.Enums;
+using Sprout.Exam.Core.Interface;
 
 namespace Sprout.Exam.WebApp.Controllers
 {
@@ -15,6 +16,11 @@ namespace Sprout.Exam.WebApp.Controllers
     [ApiController]
     public class EmployeesController : ControllerBase
     {
+        IEmployeeTypeService _employeeTypeService;
+        public EmployeesController(IEmployeeTypeService employeeTypeService)
+        {
+            _employeeTypeService = employeeTypeService;
+        }
 
         /// <summary>
         /// Refactor this method to go through proper layers and fetch from the DB.
@@ -34,7 +40,7 @@ namespace Sprout.Exam.WebApp.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var result = await Task.FromResult(StaticEmployees.ResultList.FirstOrDefault(m => m.Id == id));
+            var result = await _employeeTypeService.Get(id);
             return Ok(result);
         }
 

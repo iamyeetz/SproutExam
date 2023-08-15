@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace Sprout.Exam.Infrastructure.ModelsGenerated
+namespace Sprout.Exam.Infrastructure.Models
 {
     public partial class EmployeeType
     {
