@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sprout.Exam.WebApp", "Sprou
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sprout.Exam.Business", "Sprout.Exam.Business\Sprout.Exam.Business.csproj", "{C5431F89-D19E-4848-985C-E622C0D349D8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sprout.Exam.DataAccess", "Sprout.Exam.DataAccess\Sprout.Exam.DataAccess.csproj", "{45A7F393-1704-4881-A782-2FC8AA32BCD6}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sprout.Exam.Common", "Sprout.Exam.Common\Sprout.Exam.Common.csproj", "{8DFA8282-B821-463A-914D-E3DE367A1BE7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sprout.Exam.Infrastructure", "Sprout.Exam.Infrastructure\Sprout.Exam.Infrastructure.csproj", "{37439299-E9FB-4A43-A02D-AF5EA5D1AA99}"
@@ -31,10 +29,6 @@ Global
 		{C5431F89-D19E-4848-985C-E622C0D349D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5431F89-D19E-4848-985C-E622C0D349D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5431F89-D19E-4848-985C-E622C0D349D8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{45A7F393-1704-4881-A782-2FC8AA32BCD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{45A7F393-1704-4881-A782-2FC8AA32BCD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{45A7F393-1704-4881-A782-2FC8AA32BCD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{45A7F393-1704-4881-A782-2FC8AA32BCD6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8DFA8282-B821-463A-914D-E3DE367A1BE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8DFA8282-B821-463A-914D-E3DE367A1BE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DFA8282-B821-463A-914D-E3DE367A1BE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
