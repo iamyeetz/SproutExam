@@ -5,9 +5,13 @@ using System;
 using Sprout.Exam.Business.DataTransferObjects;
 using Sprout.Exam.Common.Enums;
 using Sprout.Exam.WebApp.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Sprout.Exam.WebApp.Controllers
 {
+    [Authorize]
+    [Route("api/[controller]")]
+    [ApiController]
     public class PayrollController : Controller
     {
         private IEmployeeService _employeeService;

@@ -101,7 +101,7 @@ export class EmployeeCalculate extends Component {
     const requestOptions = {
         method: 'POST',
         headers: !token ? {} : { 'Authorization': `Bearer ${token}`,'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: this.state.id, NoOfDays: this.state.typeId === 1 ? this.state.absentDays : this.state.workedDays})
+        body: JSON.stringify({ id: this.state.id, noOfDays: this.state.typeId === 1 ? this.state.absentDays : this.state.workedDays})
     };
     const response = await fetch('api/payroll/' + this.state.id + '/calculate',requestOptions);
     const data = await response.json();
