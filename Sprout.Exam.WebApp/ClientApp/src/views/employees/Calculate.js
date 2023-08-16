@@ -101,9 +101,9 @@ export class EmployeeCalculate extends Component {
     const requestOptions = {
         method: 'POST',
         headers: !token ? {} : { 'Authorization': `Bearer ${token}`,'Content-Type': 'application/json' },
-        body: JSON.stringify({id: this.state.id,absentDays: this.state.absentDays,workedDays: this.state.workedDays})
+        body: JSON.stringify({ id: this.state.id, NoOfDays: this.state.typeId === 1 ? this.state.absentDays : this.state.workedDays})
     };
-    const response = await fetch('api/employees/' + this.state.id + '/calculate',requestOptions);
+    const response = await fetch('api/payroll/' + this.state.id + '/calculate',requestOptions);
     const data = await response.json();
     this.setState({ loadingCalculate: false,netIncome: data });
   }
@@ -111,7 +111,7 @@ export class EmployeeCalculate extends Component {
   async getEmployee(id) {
     this.setState({ loading: true,loadingCalculate: false });
     const token = await authService.getAccessToken();
-    const response = await fetch('api/employees/' + id, {
+    const response = await fetch('api/employee/' + id, {
       headers: !token ? {} : { 'Authorization': `Bearer ${token}` }
     });
 

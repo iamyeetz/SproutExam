@@ -12,7 +12,15 @@ export class EmployeeEdit extends Component {
   componentDidMount() {
     this.getEmployee(this.props.match.params.id);
   }
-  handleChange(event) {
+    handleChange(event) {
+        if (event.target.name == "birthdate") {
+            var dateChosen = new Date(event.target.value);
+            var dateToday = new Date();
+            if (dateChosen > dateToday) {
+                alert("Date must be less than or equal to current date.")
+                return;
+            }
+        }
     this.setState({ [event.target.name] : event.target.value});
   }
 
@@ -68,14 +76,23 @@ export class EmployeeEdit extends Component {
   }
 
   async saveEmployee() {
-    this.setState({ loadingSave: true });
+      this.setState({ loadingSave: true });
+      if (this.state.fullName == '' ||
+          this.state.birthdate == '' ||
+          this.state.tin == '' ||
+          this.state.typeId == 0) {
+          alert("Please complete all the required fields.");
+          this.setState({ loadingSave: false });
+          return;
+      }
+
     const token = await authService.getAccessToken();
     const requestOptions = {
         method: 'PUT',
         headers: !token ? {} : { 'Authorization': `Bearer ${token}`,'Content-Type': 'application/json' },
         body: JSON.stringify(this.state)
     };
-    const response = await fetch('api/employees/' + this.state.id,requestOptions);
+    const response = await fetch('api/employee/' + this.state.id,requestOptions);
 
     if(response.status === 200){
         this.setState({ loadingSave: false });
@@ -90,7 +107,7 @@ export class EmployeeEdit extends Component {
   async getEmployee(id) {
     this.setState({ loading: true,loadingSave: false });
     const token = await authService.getAccessToken();
-    const response = await fetch('api/employees/' + id, {
+    const response = await fetch('api/employee/' + id, {
       headers: !token ? {} : { 'Authorization': `Bearer ${token}` }
     });
     const data = await response.json();

@@ -64,8 +64,8 @@ export class EmployeesIndex extends Component {
 
   async populateEmployeeData() {
     const token = await authService.getAccessToken();
-    const response = await fetch('api/employees', {
-      headers: !token ? {} : { 'Authorization': `Bearer ${token}` }
+    const response = await fetch('api/employee', {
+    headers: !token ? {} : { 'Authorization': `Bearer ${token}` }
     });
     const data = await response.json();
     this.setState({ employees: data, loading: false });
@@ -77,7 +77,7 @@ export class EmployeesIndex extends Component {
         method: 'DELETE',
         headers: !token ? {} : { 'Authorization': `Bearer ${token}`,'Content-Type': 'application/json' }
     };
-    const response = await fetch('api/employees/' + id,requestOptions);
+    const response = await fetch('api/employee/' + id,requestOptions);
     if(response.status === 200){
       this.setState({employees: this.state.employees.filter(function(employee) { 
         return employee.id !== id

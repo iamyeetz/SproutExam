@@ -10,11 +10,22 @@ export class EmployeeCreate extends Component {
   }
 
   componentDidMount() {
+    }
+
+    handleChange(event) {
+
+        if (event.target.name == "birthdate") {
+            var dateChosen = new Date(event.target.value);
+            var dateToday = new Date();
+            if (dateChosen > dateToday) {
+                alert("Date must be less than or equal to current date.")
+                return;
+            }
+        }
+        this.setState({ [event.target.name] : event.target.value});
   }
 
-  handleChange(event) {
-    this.setState({ [event.target.name] : event.target.value});
-  }
+
 
   handleSubmit(e){
       e.preventDefault();
@@ -67,14 +78,24 @@ export class EmployeeCreate extends Component {
   }
 
   async saveEmployee() {
-    this.setState({ loadingSave: true });
+      this.setState({ loadingSave: true });
+
+      if (this.state.fullName == '' ||
+          this.state.birthdate == '' ||
+          this.state.tin == '' ||
+          this.state.typeId == 0) {
+          alert("Please complete all the required fields.");
+          this.setState({ loadingSave: false });
+          return;
+      }
+      
     const token = await authService.getAccessToken();
     const requestOptions = {
         method: 'POST',
         headers: !token ? {} : { 'Authorization': `Bearer ${token}`,'Content-Type': 'application/json' },
         body: JSON.stringify(this.state)
     };
-    const response = await fetch('api/employees',requestOptions);
+    const response = await fetch('api/employee',requestOptions);
 
     if(response.status === 201){
         this.setState({ loadingSave: false });

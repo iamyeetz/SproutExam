@@ -1,9 +1,8 @@
+using AutoMapper;
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -34,23 +33,27 @@ namespace Sprout.Exam.WebApp
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-
-            services.AddDbContext<SproutExamDbContext>();
+            services.AddDbContext<SproutExamDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection")));
+            services.AddTransient<SproutExamDbContext>().AddDbContext<SproutExamDbContext>();
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-
 
             services.AddIdentityServer()
                 .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();
-
-            services.AddScoped<IEmployeeTypeService, EmployeeTypeService>();
-            services.AddScoped<IEmployeeTypeRepository, EmployeeTypeRepository>();
             services.AddControllersWithViews();
+            services.AddControllers(
+            options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
+            services.AddAutoMapper(typeof(Program).Assembly);
+            services.AddScoped<IMapper, Mapper>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddRazorPages();
 
             // In production, the React files will be served from this directory
